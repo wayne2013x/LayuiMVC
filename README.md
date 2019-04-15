@@ -1,2 +1,0 @@
-# LayuiMVC
-LayuiMVC
