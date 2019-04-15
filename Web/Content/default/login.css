@@ -1,0 +1,64 @@
+﻿.login-bg {
+	background: url('../../Images/sky-690293_1920.jpg');
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-position: center top;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+.login-panel {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: 0 auto;
+	width: 350px;
+	height: 320px;
+	margin-left: -175px;
+	margin-top: -175px;
+	background: #fff;
+	box-shadow: 2px 2px 4px rgb(99, 98, 98), -2px -2px 4px rgb(102, 101, 101);
+	font-family: 'Courier New', Courier, monospace;
+}
+
+.login-panel .layui-form-item {
+	padding-bottom: 17px;
+}
+
+.login-panel input {
+	margin-left: 5%;
+	width: 90%;
+}
+
+.login-panel button {
+	margin-left: 5%;
+	width: 90%;
+	background: rgb(107, 150, 184);
+}
+
+.login-panel .header {
+	text-align: center;
+	line-height: 70px;
+	margin-bottom: 35px;
+	background: rgb(107, 150, 184);
+	color: #fff;
+	height: 70px;
+
+}
+
+.login-panel .header span {
+	font: 800;
+	font-size: 20px;
+}
+
+.copyright {
+	position:absolute;
+	bottom: 0;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-family: "微软雅黑", "宋体", Arial, sans-serif;
+}

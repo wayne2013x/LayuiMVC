@@ -1,0 +1,71 @@
+﻿/*弹窗的表单组件会紧贴右侧，右外边距20px*/
+.layui-form-item {
+    margin-right: 20px;
+}
+
+/*表单方框风格时，左外边距10px，右外边距10px*/
+.layui-form-pane .layui-form-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*表单方框风格时，设置标题label文字靠右*/
+.layui-form-pane .layui-form-label {
+    text-align: right;
+}
+
+/*表单中的第一个元素与弹窗顶部间隔10px，.layui-form-item前不能有兄弟节点*/
+form .layui-form-item:first-child {
+    margin-top: 10px;
+}
+
+/*详情缩进，一般用于文本内容，一般与layui-input-inline和layui-input-block放在一起*/
+.layui-form-item .detail-indent {
+    line-height: 36px;
+    padding-left: 5px;
+}
+
+/*表单字段方格显示，添加在layui-input-inline等类处*/
+.layui-form-pane .layui-form-item div[pane] {
+    border: 1px solid #e6e6e6;
+}
+
+/*使用静态表格的表单样式*/
+
+.form-table .txtInput
+/*下拉框*/
+, .form-table .layui-form-select input, .form-table .layui-textarea {
+    width: 100%;
+    height: 30px !important;
+    border-radius: 2px;
+    padding-left: 5px;
+}
+
+/*开关（checkbox）*/
+.form-table .layui-form-switch {
+    margin-left: 0 !important;
+}
+
+.form-table {
+    margin-top: 0;
+}
+
+    .form-table th {
+        text-align: right;
+        background-color: #f8f8f8;
+        padding: 10px 5px 10px 10px;
+    }
+
+    .form-table td {
+        padding: 5px !important;
+    }
+
+    .form-table span {
+        padding-left: 5px;
+    }
+
+    .form-table tr:hover {
+        background-color: white !important;
+    }
+
+/*使用静态表格的表单样式*/

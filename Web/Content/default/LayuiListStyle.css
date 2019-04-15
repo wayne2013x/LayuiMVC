@@ -1,0 +1,12 @@
+﻿/*搜索栏样式*/
+.layui-elem-quote
+{
+    padding: 10px;
+    border-left: none;
+    margin-bottom: 0;
+}
+
+.layui-elem-quote .layui-input
+{
+    height: 30px;
+}

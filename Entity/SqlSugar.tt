@@ -1,0 +1,41 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Data" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="SqlSugar" #>
+<#@ import namespace="Newtonsoft.Json" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Web" #>
+<#@ assembly name="$(SolutionDir)packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll" #>
+<#@ assembly name="$(SolutionDir)packages\sqlSugar.4.9.9.6\lib\SqlSugar.dll" #>
+<# 
+     
+
+    //当前项目目录
+    string projectDir = Host.ResolveAssemblyReference("$(ProjectDir)");
+
+    //解决方案目录
+    string solutionDir = Host.ResolveAssemblyReference("$(SolutionDir)");
+
+ 
+    var db = new SqlSugarClient(new ConnectionConfig() { ConnectionString =  "server=119.29.98.211;uid=sa;pwd=1qaz@WSX;database=LayuiMVC", DbType = DbType.SqlServer, IsAutoCloseConnection = true });
+    
+    db.DbFirst
+    .SettingClassTemplate(old =>
+    {
+		old = old.Replace("public partial class {ClassName}", "public class {ClassName} : BaseModel");
+        return old;
+    })
+	.SettingPropertyDescriptionTemplate(old =>
+    {
+        return @"           /// <summary>
+		   /// {PropertyDescription}
+           /// </summary>";
+    }).CreateClassFile(projectDir,"Entity");
+     
+#>

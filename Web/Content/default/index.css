@@ -1,0 +1,168 @@
+﻿
+body {
+    line-height: 24px;
+    font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif
+}
+#LAY_app_body {
+    background-color: #fff;
+}
+
+.top_one_menu_icn {
+    margin-right: 8px;
+}
+
+.two_menu_list {
+    position: absolute;
+    color: #333;
+    background: white;
+    z-index: 10000;
+    display: none;
+    text-align: center;
+    box-shadow: 2px 4px 10px 2px #EEE;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: all .3s;
+    -webkit-transition: all .3s;
+    padding: 0px 10px 5px 10px;
+    top: 50px;
+}
+
+.two_menu_list_li {
+    display: inline-block;
+    width: 100px;
+    margin: 0 10px;
+}
+
+.two_menu_list_li span {
+    color: #333;
+    line-height: 40px;
+    display: block;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.three_menu_list {
+    border-top: 1px solid #ddd;
+}
+
+.three_menu_list li {
+    line-height: 30px;
+    color: #666;
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+.three_menu_list li:hover {
+    color: #fff;
+    background: #3B91FF;
+    border-radius: 3px;
+}
+
+.msg-list {
+    position: absolute;
+    bottom: 1200px;
+    right: 17px;
+    list-style: none;
+    margin: 0px;
+    z-index: 8;
+    width: 0;
+    -webkit-transition: background 0.8s;
+    -moz-transition: background 0.8s;
+    -ms-transition: background 0.8s;
+    -o-transition: background 0.8s;
+    transition: background 0.8s;
+    opacity: 0.8;
+    z-index: 999;
+    top: 95px;
+}
+
+.msg-list li {
+    float: right;
+}
+
+.msg-wrapper {
+    box-shadow: 3px 4px 7px #555;
+    border-radius: 5px;
+    position: relative;
+    width: 250px;
+    height: 56px;
+    padding-bottom: 0;
+    margin-top: 15px;
+    background-color: #333;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.msg-wrapper:hover {
+    background-color: #000;
+    box-shadow: -1px 0px 12px -1px #B6B6B6;
+    -webkit-box-shadow: -1px 0px 12px -1px #B6B6B6;
+    -o-box-shadow: -1px 0px 12px -1px #B6B6B6;
+    -ms-box-shadow: -1px 0px 12px -1px #B6B6B6;
+    -moz-box-shadow: -1px 0px 12px -1px #B6B6B6;
+}
+
+.msg-wrapper .msg-icon,
+.msg-wrapper .msg-content,
+.msg-wrapper .msg-count,
+.msg-wrapper .msg-title {
+    position: absolute;
+    display: inline-block;
+}
+
+.msg-wrapper .msg-icon {
+    font-size: 30px;
+    top: 9px;
+    left: 9px;
+    color: #63A3E2;
+}
+
+.msg-wrapper .msg-title {
+    left: 6px;
+    top: 7px;
+    color: #EEE;
+    font-size: 13px;
+}
+
+.msg-wrapper .msg-content {
+    left: 13px;
+    top: 28px;
+    right: 0;
+    height: 20px;
+    color: #EEE;
+    width: 183px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.msg-wrapper .msg-count {
+    right: 20px;
+    top: 17px;
+    background: red;
+    padding: 0px 7px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.msg-wrapper .msg-close {
+    position: absolute;
+    top: -8px;
+    right: -18px;
+    background-size: 24px 24px;
+    height: 32px;
+    width: 32px;
+    z-index: 10;
+    transform: scale(0) translateY(-12px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.msg-wrapper:hover .msg-close {
+    transform: scale(1) translateY(0);
+}
+
+.msg-list li:hover .msg-close {
+    display: inline-block;
+}
