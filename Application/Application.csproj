@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AccountLogic.cs" />
     <Compile Include="BaseLogic.cs" />
+    <Compile Include="MenuLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

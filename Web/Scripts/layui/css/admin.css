@@ -352,9 +352,6 @@ html {
     /*width: 60px;background-color: #fff;*/
     background-image: url(../../../Images/logo.png);
     width:auto;
-    background-position: center top;
-    -webkit-background-size: cover;
-    background-size: cover;
 }
 
     .layadmin-side-shrink .layui-layout-admin .layui-logo span {

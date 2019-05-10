@@ -5,16 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using Application;
 using Common;
+using Entity;
 
 namespace Web.Areas.Admin.Controllers
 {
     public class LoginController : BaseController
     {
         AccountLogic accountLogic = new AccountLogic();
-        // GET: Admin/Login
         public ActionResult Index()
         {
-            //BaseClass.SetSession("")
+            BaseClass.SetSession("User", new Account());
             return View();
         }
         [HttpPost]
@@ -24,10 +24,8 @@ namespace Web.Areas.Admin.Controllers
             return Success(new
             {
                 msg = "登录成功！",
-                url = AppConfig.HomePageUrl// + "#!%u9996%u9875#!/Admin/Home/Index/"
+                url = AppConfig.HomePageUrl
             });
-            //return RedirectToAction("Index", "Home", new { area = "Admin" });
-            //return Redirect("Admin/Home");
              
             
             

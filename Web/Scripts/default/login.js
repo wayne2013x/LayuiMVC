@@ -19,8 +19,6 @@
             "/Admin/Login/Checked",
             showData,
             function(obj) {
-                console.log(obj);
-                layer.msg(obj.msg);
                 location.href = obj.url;
                 layer.close(loadIndex);
             }

@@ -6,7 +6,7 @@ using Entity;
 
 namespace Application
 {
-    public class AccountLogic : BaseLogic<User>
+    public class AccountLogic : BaseLogic<Sys_User>
     {
         public void Checked(string uName, string uPwd)
         {
@@ -30,7 +30,7 @@ namespace Application
             //如果是超级管理员 帐户
             //_Account.IsSuperManage = _Sys_Role.Role_ID == AppConfig.Admin_RoleID.ToGuid();
 
-            BaseClass.SetSession("Account", _Account);
+            BaseClass.SetSession("User", _Account);
         }
     }
 }

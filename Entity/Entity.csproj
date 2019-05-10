@@ -55,6 +55,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SqlSugar.tt</DependentUpon>
     </Compile>
+    <Compile Include="Sys_Function.cs" />
+    <Compile Include="Sys_Menu.cs" />
+    <Compile Include="Sys_MenuFunction.cs" />
+    <Compile Include="Sys_User.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

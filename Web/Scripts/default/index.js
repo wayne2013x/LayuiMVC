@@ -164,6 +164,7 @@
                 $(".layui-side-menu").css("width", "210px");
                 //logo展开
                 $(".layui-logo").css("width", "210px");
+                $(".layui-logo img").toggle();
                 //iframe展开
                 $("#LAY_app_body").css({ "left": "210px" });
                 //选项卡展开
@@ -181,7 +182,7 @@
                 $(".layui-side-menu").css("width", "60px");
                 //logo收缩
                 $(".layui-logo").css("width", "60px");
-                $(".layui-logo").css("background-color", "#324157");
+                $(".layui-logo img").toggle();
                 //iframe收缩
                 $("#LAY_app_body").css({ "left": "60px" });
                 //选项卡收缩
@@ -195,60 +196,30 @@
         }
     });
 
-
-    //打开顶部菜单
-    $("#top_menu_btn").click(function () {
-        if (check_count == 0) {
-            //侧边栏收缩
-            $(".layui-side-menu").css("width", "0px");
-            //logo收缩
-            $(".layui-logo").css("width", "0px");
-            //iframe收缩
-            $("#LAY_app_body").css({ "left": "0px", "top": "140px" });
-            //选项卡收缩
-            $("#LAY_app_tabs").css({ "left": "0px", "top": "100px" });
-            //头部收缩
-            $(".layui-header").css({ "top": "50px" });
-            $(".layui-layout-left").css("left", "0px");
-
-            check_count = 1;
-        } else {
-            $("#LAY_app").removeClass("layadmin-side-shrink");
-            $("#LAY_app_flexible").removeClass("layui-icon-spread-left");
-            $("#LAY_app_flexible").addClass("layui-icon-shrink-right");
-
-            //侧边栏展开
-            $(".layui-side-menu").css("width", "220px");
-            //logo展开
-            $(".layui-logo").css("width", "220px");
-            //iframe展开
-            $("#LAY_app_body").css({ "left": "220px", "top": "90px" });
-            //选项卡展开
-            $("#LAY_app_tabs").css({ "left": "220px", "top": "50px" });
-            //头部展开
-            $(".layui-header").css({ "top": "0px" });
-            $(".layui-layout-left").css("left", "220px");
-
-            check_count = 0;
-        }
-    });
-
-    //刷新
-    $("#reload").click(function () {
-        window.location.reload();
-    });
-
     //开启全屏
-    $("#full_screen").click(function () {
-        var el = document.documentElement;
-        var rfs = el.requestFullScreen || el.webkitRequestFullScreen ||
-            el.mozRequestFullScreen || el.msRequestFullScreen;
-        if (typeof rfs != "undefined" && rfs) {
-            rfs.call(el);
-        } else if (typeof window.ActiveXObject != "undefined") {
-            var wscript = new ActiveXObject("WScript.Shell");
-            if (wscript != null) {
-                wscript.SendKeys("{F11}");
+    $("#full_screen").on("click", function toggleFull() {
+        if ((document.fullScreenElement !== undefined && document.fullScreenElement === null)
+            || (document.msFullscreenElement !== undefined && document.msFullscreenElement === null)
+            || (document.mozFullScreen !== undefined && !document.mozFullScreen)
+            || (document.webkitIsFullScreen !== undefined && !document.webkitIsFullScreen)) {
+            if (document.documentElement.requestFullScreen) {
+                document.documentElement.requestFullScreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullScreen) {
+                document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        } else {
+            if (document.cancelFullScreen) {
+                document.cancelFullScreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitCancelFullScreen) {
+                document.webkitCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
             }
         }
     });
@@ -271,5 +242,66 @@
         tab_click++;
         var width = $("#tab_main").width() - 45;
         $("#tab_main ul").css("left", "-" + width * tab_click + "px");
+    });
+    $("#tab_control").hover(function () {
+        $(".layui-nav-child.layui-anim-fadein").toggle();
+    }, function () {
+        $(".layui-nav-child.layui-anim-fadein").toggle();
+    });
+    //关闭当前标签页
+    $("#closeThis").on("click", () => {
+        let menu_id = $(".layui-this.tab").attr("data-id");
+        if (menu_id == 0)
+            return;
+
+        $("#iframe_" + menu_id).remove();
+        $("#tab_" + menu_id).remove();
+
+        $(".three_menu_name").parent().removeClass("layui-this");
+
+        $("#tab_0").addClass("layui-this");
+        $("#iframe_0").addClass("layui-show");
+    });
+    //关闭其他标签页
+    $("#closeOther").on("click", () => {
+        $("#LAY_app_tabsheader").find("li").not(":first").not(".layui-this").remove();
+    });
+    //关闭所有标签页
+    $("#closeAll").on("click", () => {
+        $(".three_menu_name").parent().removeClass("layui-this");
+        $("#LAY_app_tabsheader").find("li").not(":first").remove();
+        $("#LAY_app_body").find("iframe").not(":first").remove();
+    });
+    //刷新当前Iframe
+    $("#refresh").on("click", () => {
+        let menu_id = $(".layui-this.tab").attr("data-id");
+        let menu_href = $(".layui-this.tab").attr("lay-attr");
+        $(".tab").removeClass("layui-this");
+        $("#tab_" + menu_id).addClass("layui-this");
+        $("#LAY_app_body div").removeClass("layui-show");
+        $("#ifame_" + menu_id).addClass("layui-show");
+        $("#ifame_" + menu_id).remove();
+        let iframe_html = '<div id="iframe_' + menu_id + '" class="layadmin-tabsbody-item layui-show"><iframe src="' + menu_href + '" frameborder="0" class="layadmin-iframe"></iframe></div>';
+        $("#LAY_app_body").append(iframe_html);
+    });
+    //显示首页
+    $("#showhome").on("click", () => {
+        $(".tab").removeClass("layui-this");
+        $("#tab_" + menu_id).addClass("layui-this");
+
+        $("#LAY_app_body div").removeClass("layui-show");
+        //显示首页Ifmare
+
+        $("#ifame_" + menu_id).addClass("layui-show");
+        $("#ifame_" + menu_id).remove();
+        var iframe_html = '<div id="iframe_' + menu_id + '" class="layadmin-tabsbody-item layui-show"><iframe src="' + menu_href + '" frameborder="0" class="layadmin-iframe"></iframe></div>';
+        $("#LAY_app_body").append(iframe_html);
+    });
+
+    //当前登录用户
+    $('#loginuser').hover(() => {
+        $(".layui-nav-child.layui-anim.layui-anim-upbit").toggle();
+    }, function () {
+        $(".layui-nav-child.layui-anim.layui-anim-upbit").toggle();
     });
 });
